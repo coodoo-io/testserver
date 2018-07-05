@@ -1,0 +1,10 @@
+{
+    "version": "1.0.0",
+    "description": "Test Server",
+    "scripts": {
+        "start": "node server.js",
+        "docker:build": "docker build -t coodoogmbh/testserver:latest -t coodoogmbh/testserver:1.0.0 .",
+        "docker:run": "docker run -m 1024MB -it -p 3000:3000 coodoogmbh/testserver",
+        "docker:push": "docker push coodoogmbh/testserver:1.0.0"
+    }
+}

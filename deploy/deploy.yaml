@@ -1,0 +1,20 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: testserver
+spec:
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: testserver
+    spec:
+      containers:
+        - name: testserver
+          image: coodoogmbh/testserver:1.0.0
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
