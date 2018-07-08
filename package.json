@@ -8,9 +8,12 @@
         "docker:push": "npm run docker:build && docker push coodoogmbh/testserver:1.0.1",
         "k8s:proxy": "kubectl proxy",
         "k8s:create":"kubectl create -f deploy/setup.yaml",
+        "k8s:deployments":"kubectl get deployments -o wide",
         "k8s:scale":"kubectl scale --replicas=3 deployment/testserver",
         "k8s:autoscale":"kubectl autoscale deployment testserver --min=2 --max=5 --cpu-percent=2",
         "k8s:autoscale:config":"kubectl get hpa testserver",
+        "k8s:update":"kubectl set image deployments/testserver testserver=coodoogmbh/testserver:1.0.1",
+        "k8s:rollback":"kubectl rollout undo deployments/testserver",
         "k8s:delete":"kubectl delete -f deploy/setup.yaml",
         "loadtest": "ab -n 10000 -c 10 -k http://127.0.0.1:8001/api/v1/namespaces/default/services/testserver:3000/proxy/"
     }

@@ -1,10 +1,11 @@
 kops create cluster \
     --node-count 3 \
     --master-count 1 \
-    --cloud-labels kubernetes.io/cluster/$KOPS_CLUSTER_NAME=owned \
-    --zones eu-central-1a,eu-central-1b,eu-central-1c \
-    --bastion \
-    ${KOPS_CLUSTER_NAME}
+    --cloud-labels kubernetes.io/cluster/${KOPS_CLUSTER_NAME}=owned \
+    --master-size t2.medium \
+    --zones ${AWS_AVAILABILITY_ZONES} \
+    --name ${KOPS_CLUSTER_NAME} \
+    # --yes
 
 # kops create cluster \
 #     --cloud aws \
@@ -22,3 +23,7 @@ kops create cluster \
 #     --cloud-labels kubernetes.io/cluster/$KOPS_CLUSTER_NAME=owned
 #     --bastion \
 #     ${KOPS_CLUSTER_NAME}
+
+# kops delete cluster --name ${KOPS_CLUSTER_NAME} --yes
+
+# kops validate cluster --name ${KOPS_CLUSTER_NAME}
