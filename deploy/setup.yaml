@@ -1,0 +1,46 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: testserver
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: testserver
+    spec:
+      containers:
+        - name: testserver
+          image: coodoogmbh/testserver:1.0.0
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: testserver
+  labels:
+    app: testserver
+spec:
+  ports:
+    - name: testserver
+      port: 3000
+  selector:
+    app: testserver
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: testserver
+  namespace: default
+spec:
+  maxReplicas: 3
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: v1
+    kind: ReplicaSet
+    name: testserver
