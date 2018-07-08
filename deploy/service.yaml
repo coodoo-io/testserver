@@ -6,7 +6,7 @@ metadata:
     app: testserver
 spec:
   ports:
-    - name: web-frontend
+    - name: testserver
       port: 3000
   selector:
     app: testserver
