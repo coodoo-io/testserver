@@ -5,7 +5,7 @@ kops create cluster \
     --master-size t2.medium \
     --zones ${AWS_AVAILABILITY_ZONES} \
     --name ${KOPS_CLUSTER_NAME} \
-    # --yes
+    --yes
 
 # kops create cluster \
 #     --cloud aws \
@@ -27,3 +27,5 @@ kops create cluster \
 # kops delete cluster --name ${KOPS_CLUSTER_NAME} --yes
 
 # kops validate cluster --name ${KOPS_CLUSTER_NAME}
+
+# kops get clusters
